@@ -1,57 +1,38 @@
-//import { useState } from "react";
-import { useState, useEffect } from "react";
-import Feedback from "./feedback/Feedback";
-import Options from "./options/Options";
-import Description from "./description/Description";
-import Notification from "./notification/Notification";
+//import { useState, useEffect } from "react";
+import { useState } from "react";
+import ContactForm from "./contactForm/ContactForm";
+import ContactList from "./contactList/ContactList";
+import SearchBox from "./searchBox/SearchBox";
+
 export default function App() {
-  const getFeedback = () => {
-    const savedObject = window.localStorage.getItem("saved-feedback");
+  const [contacts, setContacts] = useState([
+    { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+    { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+    { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+    { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+  ]);
 
-    return savedObject != null
-      ? JSON.parse(savedObject)
-      : { good: 0, neutral: 0, bad: 0 };
-  };
-
-  const [feedback, setFeedback] = useState(getFeedback);
-
-  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = Math.round((feedback.good / totalFeedback) * 100);
-  const updateFeedback = (feedbackType) => {
-    setFeedback({
-      ...feedback,
-      [feedbackType]: feedback[feedbackType] + 1,
+  const addContact = (newContact) => {
+    setContacts((prevContacts) => {
+      return [...prevContacts, newContact];
     });
   };
-  const resetUseState = () => {
-    setFeedback({
-      good: 0,
-      neutral: 0,
-      bad: 0,
+  const [filter, setFilter] = useState("");
+
+  const deleteContact = (contactId) => {
+    setContacts((prevContacts) => {
+      return prevContacts.filter((contact) => contact.id !== contactId);
     });
   };
-
-  useEffect(() => {
-    window.localStorage.setItem("saved-feedback", JSON.stringify(feedback));
-  }, [feedback]);
-
+  const visibleContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
   return (
-    <>
-      <Description />
-      <Options
-        updateFeedback={updateFeedback}
-        resetUseState={resetUseState}
-        totalFeedback={totalFeedback}
-      />
-
-      {totalFeedback > 0 && (
-        <Feedback
-          feedback={feedback}
-          totalFeedback={totalFeedback}
-          positiveFeedback={positiveFeedback}
-        />
-      )}
-      {totalFeedback === 0 && <Notification />}
-    </>
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm onAdd={addContact} />
+      <SearchBox value={filter} onFilter={setFilter} />
+      <ContactList contacts={visibleContacts} onDelete={deleteContact} />
+    </div>
   );
 }
