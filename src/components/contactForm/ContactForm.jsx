@@ -10,14 +10,11 @@ export default function ContactForm({ onAdd }) {
     actions.resetForm();
   };
   return (
-    <Formik
-      initialValues={{ username: "", number: "" }}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={{ name: "", number: "" }} onSubmit={handleSubmit}>
       <Form>
         <div>
           <label htmlFor={`${fieldId}-username`}>Name</label>
-          <Field type="text" name="username" id={`${fieldId}-username`} />
+          <Field type="text" name="name" id={`${fieldId}-username`} />
         </div>
         <div>
           <label htmlFor={`${fieldId}-number`}>Number</label>
