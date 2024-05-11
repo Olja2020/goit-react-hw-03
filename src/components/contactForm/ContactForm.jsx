@@ -1,12 +1,13 @@
 //import css from "./ContactForm.module.css";
+import { nanoid } from "nanoid";
 import { Formik, Form, Field } from "formik";
 //import { number } from "prop-types";
-export default function ContactForm(onAdd) {
+export default function ContactForm({ onAdd }) {
   const handleSubmit = (values, actions) => {
     onAdd(values);
     actions.resetForm();
   };
-
+  //model.id = nanoid();
   // onAdd({
   //   name: e.target.elements.name.values,
   //   number: e.target.elements.number.values,
