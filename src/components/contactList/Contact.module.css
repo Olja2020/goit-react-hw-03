@@ -1,0 +1,25 @@
+.container {
+  border: 3px solid gray;
+  border-radius: 4px;
+  display: flex;
+  gap: 10px;
+  padding: 15px 10px;
+  width: 300px;
+  justify-content: space-between;
+}
+.btn {
+  border: 1px solid gray;
+}
+.card {
+  display: block;
+}
+.icon {
+  margin-right: 10px;
+}
+.name {
+  font-weight: 400;
+  display: flex;
+}
+.number {
+  display: flex;
+}
