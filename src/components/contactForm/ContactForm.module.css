@@ -17,3 +17,6 @@
   width: 310px;
   margin-bottom: 20px;
 }
+.error {
+  color: red;
+}
