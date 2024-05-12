@@ -20,7 +20,7 @@ const UserSchema = Yup.object().shape({
     .min(3, "min 3 letter")
     .max(50, "max 50 letter")
     .required("required field"),
-  number: Yup.string()
+  number: Yup.number()
     .min(3, "min 3 number")
     .max(50, "max 50 number")
     .required("required field"),
