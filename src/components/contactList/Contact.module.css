@@ -11,6 +11,8 @@
 }
 .btn {
   border: 1px solid gray;
+  padding: 0 10px;
+  height: 40px;
 }
 .card {
   display: block;
