@@ -9,9 +9,8 @@ const UserSchema = Yup.object().shape({
     .max(50, "max 50 letter")
     .required("required field"),
   number: Yup.string()
-
-    .min(7, "min 9 number format xxx-xx-xx")
-    .max(7, "max 9 number")
+    .min(9, "min 9 number format xxx-xx-xx")
+    .max(9, "max 9 number")
     .required("required field"),
 });
 export default function ContactForm({ onAdd }) {
